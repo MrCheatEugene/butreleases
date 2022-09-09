@@ -2,7 +2,9 @@ from github import Github
 import os,requests,shutil
 token = "TOKEN" # Personal token WITH REPO PERMISSIONS
 g = Github(token) # creating pygithub object
-
+if not os.path.exists("releases"):
+    os.mkdir("releases")
+    pass
 for repo in g.get_user().get_repos():# for each repo
     releases = repo.get_releases()  # getting releases
     reporeleasesfoldername = "releases/"+repo.name+"-releases" # generating folder name for releases of repo X
